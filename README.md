@@ -1,92 +1,153 @@
-# Calcify — Calculadora Científica em Python
+# 🧮 Calcify — Calculadora Científica
 
-Calculadora desenvolvida em Python, inicialmente com operações matemáticas básicas e aprimorada com funcionalidades científicas, estatísticas e conversões de unidades.
+**Make numbers simple.**
 
-**🎓 Contexto:** Aprimoramento realizado como parte do **Desafio 2 da Imersão Engenharia de Software: Dev na Era da IA**, promovida pela Alura em parceria com o Google Antigravity.
+O Calcify é uma calculadora científica desenvolvida em Python que evoluiu de uma aplicação executada no terminal para uma aplicação web interativa, reunindo operações matemáticas, ferramentas científicas e recursos de estatística em uma única interface.
 
----
+## 💡 Sobre o projeto
 
-## 📁 Estrutura do Projeto
+O projeto começou como uma calculadora em Python, com o objetivo de praticar lógica de programação, funções e organização de código.
 
-- `operacoes.py`: reúne as funções responsáveis pelos cálculos matemáticos.
-- `calculadora.py`: contém o menu, a interação com o usuário e a validação das entradas.
-- `test_calculadora.py`: reúne os testes automatizados utilizando `unittest`.
+Durante o **Desafio 2 da Imersão Engenharia de Software: Dev na Era da IA**, promovida pela Alura em parceria com o Google, utilizei o Google Antigravity para explorar novas possibilidades de desenvolvimento com inteligência artificial.
 
-## 🚀 Funcionalidades
+A partir dessa experiência, decidi evoluir o projeto original, mantendo sua lógica matemática e construindo uma aplicação web completa.
 
-### 1. Operações Básicas
-- Adição, subtração, multiplicação e divisão.
-- Tratamento de divisão por zero.
+O resultado foi o Calcify: uma aplicação que integra Python, Flask, HTML, CSS e JavaScript, com testes automatizados para validar seu funcionamento.
 
-### 2. Porcentagem
-- Cálculo de porcentagem.
-- Aumento e desconto percentual.
+## ✨ Funcionalidades
 
-### 3. Potenciação e Radiciação
-- Potenciação.
-- Raiz quadrada e raiz enésima.
+- **Calculadora básica:** adição, subtração, multiplicação e divisão.
+- **Porcentagem:** cálculo de porcentagem, aumento e desconto percentual.
+- **Potenciação e radiciação:** potências, raízes quadradas e raízes de qualquer índice.
+- **Funções científicas:** seno, cosseno, tangente, logaritmos e fatorial.
+- **Equações:** resolução de equações de primeiro e segundo grau.
+- **Estatística:** média, mediana, maior e menor valor.
+- **Conversões:** temperatura, distância e tempo.
 
-### 4. Funções Científicas
-- Seno, cosseno e tangente.
-- Logaritmo natural e decimal.
-- Fatorial.
+### 🖥️ Recursos da interface
 
-### 5. Equações
-- Equações do primeiro grau.
-- Equações do segundo grau pelo método de Bhaskara.
+- Temas claro e escuro.
+- Histórico de cálculos.
+- Alternância entre graus e radianos.
+- Suporte ao teclado.
+- Interface responsiva.
+- Comunicação entre frontend e backend por API.
 
-### 6. Estatística
-- Média e mediana.
-- Maior e menor valor.
+## 🛠️ Tecnologias utilizadas
 
-### 7. Conversões de Unidades
-
-| Conversão | Unidades |
+| Tecnologia | Aplicação |
 |---|---|
-| Temperatura | Celsius e Fahrenheit |
-| Distância | Quilômetros e metros |
-| Tempo | Horas e minutos |
+| Python | Lógica matemática e backend |
+| Flask | Aplicação web e API |
+| HTML5 | Estrutura da interface |
+| CSS3 | Estilização e responsividade |
+| JavaScript | Interatividade e operações |
+| Jinja2 | Integração dos templates |
+| Unittest | Testes automatizados |
+| Gunicorn | Servidor de produção |
+| Google Antigravity | Ambiente de desenvolvimento com IA |
 
-## 🛠️ Tecnologias Utilizadas
+## 📂 Estrutura do projeto
 
-- **Python 3**
-- **Math:** biblioteca nativa para operações matemáticas.
-- **Unittest:** biblioteca para testes automatizados.
+```text
+Calcify/
+├── app.py
+├── calculadora.py
+├── operacoes.py
+├── test_app.py
+├── test_calculadora.py
+├── requirements.txt
+├── Procfile
+├── render.yaml
+├── README.md
+├── templates/
+│   └── index.html
+└── static/
+    ├── css/
+    │   └── style.css
+    └── js/
+        └── main.js
+```
 
-Não são necessárias dependências externas.
+## 🚀 Como executar localmente
 
-## ▶️ Como Executar
+### 1. Clone o repositório
 
-Certifique-se de ter o Python 3 instalado.
+```bash
+git clone https://github.com/malucalauti12-prog/Calcify---Calculadora-Cient-fica-em-Pythonv.git
+```
 
-Execute o comando no terminal, dentro da pasta do projeto:
+### 2. Entre na pasta do projeto
+
+```bash
+cd Calcify---Calculadora-Cient-fica-em-Pythonv
+```
+
+### 3. Instale as dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Inicie a aplicação web
+
+```bash
+python app.py
+```
+
+Acesse no navegador:
+
+```text
+http://localhost:5000
+```
+
+### Calculadora pelo terminal
+
+O projeto também mantém sua versão original executada pelo terminal:
 
 ```bash
 python calculadora.py
 ```
 
-## 🧪 Testes Automatizados
+## 🧪 Testes automatizados
 
-O projeto conta com **32 testes automatizados**, desenvolvidos para verificar o funcionamento das operações e das funcionalidades implementadas.
+O projeto possui **44 testes automatizados**, divididos em:
 
-Para executar os testes:
+- 32 testes unitários para as operações matemáticas.
+- 12 testes de integração para a aplicação web e suas rotas.
+
+Para executar:
 
 ```bash
-python -m unittest -v test_calculadora.py
+python -m unittest -v test_calculadora.py test_app.py
 ```
 
-**Resultado:** 32 testes executados e aprovados.
+**Última execução registrada:** 44 testes executados e aprovados, sem falhas.
 
-## 📚 Objetivo do Projeto
+## ☁️ Publicação
 
-Praticar conceitos de programação em Python, organização e reutilização de código, tratamento de erros e testes automatizados, além de aprimorar uma aplicação existente sem comprometer suas funcionalidades originais.
+O projeto está configurado para publicação no [Render](https://render.com/), utilizando Gunicorn e o arquivo `render.yaml`.
 
+O deploy ainda depende da publicação e validação do serviço na plataforma.
 
-## 👩‍💻 Autoria e Aprendizado
+## 🎯 Aprendizados e desenvolvimento
 
-Este projeto representa uma etapa da minha jornada de aprendizado em desenvolvimento de software.
+O desenvolvimento do Calcify foi uma oportunidade de transformar conhecimentos teóricos em uma aplicação prática.
 
-Durante o Desafio 2, utilizei a inteligência artificial como ferramenta de apoio para analisar o código existente, implementar melhorias e realizar testes, participando do processo de evolução da aplicação.
+Durante sua evolução, pude trabalhar com:
+
+- Organização e reutilização de código.
+- Integração entre frontend e backend.
+- Criação e utilização de APIs.
+- Desenvolvimento de interfaces web.
+- Testes automatizados.
+- Utilização de inteligência artificial como apoio ao desenvolvimento.
+
+A inteligência artificial foi utilizada como ferramenta de apoio, enquanto as decisões, melhorias e validações fizeram parte do processo de aprendizado e evolução do projeto.
+
+---
+
+**Desenvolvido com Python, curiosidade e vontade de aprender.** ⭐
 
 A experiência contribuiu para desenvolver minha capacidade de compreender códigos, identificar melhorias e validar soluções.
 
