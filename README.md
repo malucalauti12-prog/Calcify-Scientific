@@ -4,6 +4,10 @@
 
 O Calcify é uma calculadora científica desenvolvida em Python que evoluiu de uma aplicação executada no terminal para uma aplicação web interativa, reunindo operações matemáticas, ferramentas científicas e recursos de estatística em uma única interface.
 
+## 📸 Demonstração
+
+![Tela do Calcify](./calcifyCft.png)
+
 ## 💡 Sobre o projeto
 
 O projeto começou como uma calculadora em Python, com o objetivo de praticar lógica de programação, funções e organização de código.
