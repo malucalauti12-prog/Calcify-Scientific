@@ -81,7 +81,6 @@ python -m unittest -v test_calculadora.py
 
 Praticar conceitos de programação em Python, organização e reutilização de código, tratamento de erros e testes automatizados, além de aprimorar uma aplicação existente sem comprometer suas funcionalidades originais.
 
-## 👩‍💻 Autoria e Aprendizado
 
 ## 👩‍💻 Autoria e Aprendizado
 
