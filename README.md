@@ -18,6 +18,14 @@ A partir dessa experiência, decidi evoluir o projeto original, mantendo sua ló
 
 O resultado foi o Calcify: uma aplicação que integra Python, Flask, HTML, CSS e JavaScript, com testes automatizados para validar seu funcionamento.
 
+## ☁️ Publicação
+
+O Calcify está disponível na web e pode ser acessado diretamente pelo navegador.
+
+🔗 **Aplicação online:** https://calcify-calculadora-cient-fica-em-pythonv.onrender.com
+
+O deploy foi realizado na plataforma Render, utilizando Gunicorn para executar a aplicação Flask em produção.
+
 ## ✨ Funcionalidades
 
 - **Calculadora básica:** adição, subtração, multiplicação e divisão.
@@ -128,11 +136,6 @@ python -m unittest -v test_calculadora.py test_app.py
 
 **Última execução registrada:** 44 testes executados e aprovados, sem falhas.
 
-## ☁️ Publicação
-
-O projeto está configurado para publicação no [Render](https://render.com/), utilizando Gunicorn e o arquivo `render.yaml`.
-
-O deploy ainda depende da publicação e validação do serviço na plataforma.
 
 ## 🎯 Aprendizados e desenvolvimento
 
