@@ -1,4 +1,4 @@
-# 🧮 Calcify — Calculadora Científica
+# Calcify — Calculadora Científica
 
 **Make numbers simple.**
 
