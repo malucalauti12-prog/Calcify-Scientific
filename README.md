@@ -1,4 +1,4 @@
-# Calcify Aprimorada.
+# Calcify — Calculadora Científica em Python
 
 Calculadora desenvolvida em Python, inicialmente com operações matemáticas básicas e aprimorada com funcionalidades científicas, estatísticas e conversões de unidades.
 
@@ -83,9 +83,13 @@ Praticar conceitos de programação em Python, organização e reutilização de
 
 ## 👩‍💻 Autoria e Aprendizado
 
-Este projeto faz parte da minha jornada de aprendizado em desenvolvimento de software. A proposta do desafio foi explorar o uso da inteligência artificial como ferramenta de apoio para analisar, aprimorar e testar um código existente.
+## 👩‍💻 Autoria e Aprendizado
 
-A experiência também permitiu desenvolver habilidades de leitura de código, identificação de melhorias e validação de funcionalidades.
+Este projeto representa uma etapa da minha jornada de aprendizado em desenvolvimento de software.
+
+Durante o Desafio 2, utilizei a inteligência artificial como ferramenta de apoio para analisar o código existente, implementar melhorias e realizar testes, participando do processo de evolução da aplicação.
+
+A experiência contribuiu para desenvolver minha capacidade de compreender códigos, identificar melhorias e validar soluções.
 
 ---
 
