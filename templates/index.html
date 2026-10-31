@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcify - Calculadora Científica Moderna</title>
+  <meta name="description" content="Calcify: Calculadora científica moderna em Python e Flask. Make numbers simple.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="theme-dark">
+  <div class="app-container">
+    
+    <!-- HEADER -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="brand-badge">C</div>
+        <div class="brand-info">
+          <h1 class="brand-title">Calcify</h1>
+          <p class="brand-slogan">Make numbers simple.</p>
+        </div>
+      </div>
+
+      <!-- NAVEGAÇÃO POR ABAS -->
+      <nav class="nav-tabs" role="tablist">
+        <button class="nav-tab active" data-tab="calculadora" role="tab" aria-selected="true">
+          <span class="tab-icon">🧮</span>
+          <span class="tab-label">Calculadora</span>
+        </button>
+        <button class="nav-tab" data-tab="equacoes" role="tab" aria-selected="false">
+          <span class="tab-icon">📐</span>
+          <span class="tab-label">Equações</span>
+        </button>
+        <button class="nav-tab" data-tab="estatistica" role="tab" aria-selected="false">
+          <span class="tab-icon">📊</span>
+          <span class="tab-label">Estatística</span>
+        </button>
+        <button class="nav-tab" data-tab="conversoes" role="tab" aria-selected="false">
+          <span class="tab-icon">🔄</span>
+          <span class="tab-label">Conversões</span>
+        </button>
+        <button class="nav-tab" data-tab="porcentagem" data-tab-name="Porcentagem" role="tab" aria-selected="false">
+          <span class="tab-icon">🏷️</span>
+          <span class="tab-label">Porcentagem</span>
+        </button>
+      </nav>
+
+      <!-- AÇÕES DO HEADER -->
+      <div class="header-actions">
+        <button id="btn-theme-toggle" class="btn-ghost" title="Alternar tema claro/escuro" aria-label="Alternar tema">
+          <span id="theme-icon">☀️</span>
+        </button>
+        <button id="btn-history-toggle" class="btn-ghost btn-history" title="Abrir histórico de cálculos" aria-label="Histórico">
+          <span>📜</span>
+          <span class="btn-text">Histórico</span>
+          <span id="history-badge" class="badge-count" style="display: none;">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ÁREA DE NOTIFICAÇÃO / TOAST -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content">
+
+      <!-- ===================================================================
+           ABA 1: CALCULADORA (BÁSICA E CIENTÍFICA)
+      =================================================================== -->
+      <section id="tab-calculadora" class="tab-panel active" role="tabpanel">
+        <div class="calc-layout">
+          <div class="calc-card">
+            
+            <!-- VISOR DIGITAL -->
+            <div class="display-container">
+              <div class="display-meta">
+                <button id="btn-deg-rad" class="btn-mode" title="Alternar Graus/Radianos">DEG</button>
+                <div id="display-expr" class="display-expression"></div>
+              </div>
+              <div class="display-main">
+                <span id="display-value" class="display-text">0</span>
+              </div>
+            </div>
+
+            <!-- TECLADO CIENTÍFICO E NUMÉRICO -->
+            <div class="keypad-grid">
+              <!-- LINHA 1: Funções Científicas -->
+              <button class="btn btn-sci" data-action="sin">sin</button>
+              <button class="btn btn-sci" data-action="cos">cos</button>
+              <button class="btn btn-sci" data-action="tan">tan</button>
+              <button class="btn btn-sci" data-action="ln">ln</button>
+              <button class="btn btn-sci" data-action="log">log₁₀</button>
+
+              <!-- LINHA 2: Potências e Raízes -->
+              <button class="btn btn-sci" data-action="power" title="Potência xʸ">xʸ</button>
+              <button class="btn btn-sci" data-action="sqrt" title="Raiz Quadrada">√x</button>
+              <button class="btn btn-sci" data-action="root_n" title="Raiz de índice n">ⁿ√x</button>
+              <button class="btn btn-sci" data-action="fact" title="Fatorial">n!</button>
+              <button class="btn btn-op" data-action="pct" title="Porcentagem">%</button>
+
+              <!-- LINHA 3: Edição e Divisão -->
+              <button class="btn btn-clear" data-action="clear" title="Limpar Tudo (Escape)">AC</button>
+              <button class="btn btn-edit" data-action="backspace" title="Apagar último (Backspace)">⌫</button>
+              <button class="btn btn-edit" data-action="sign" title="Inverter sinal (+/-)">±</button>
+              <button class="btn btn-edit" data-action="paren_open">(</button>
+              <button class="btn btn-op" data-action="op" data-val="/" title="Divisão">÷</button>
+
+              <!-- LINHA 4: 7, 8, 9, Multiplicação -->
+              <button class="btn btn-num" data-action="num" data-val="7">7</button>
+              <button class="btn btn-num" data-action="num" data-val="8">8</button>
+              <button class="btn btn-num" data-action="num" data-val="9">9</button>
+              <button class="btn btn-edit" data-action="paren_close">)</button>
+              <button class="btn btn-op" data-action="op" data-val="*" title="Multiplicação">×</button>
+
+              <!-- LINHA 5: 4, 5, 6, Subtração -->
+              <button class="btn btn-num" data-action="num" data-val="4">4</button>
+              <button class="btn btn-num" data-action="num" data-val="5">5</button>
+              <button class="btn btn-num" data-action="num" data-val="6">6</button>
+              <button class="btn btn-sci" data-action="pi" title="Constante Pi (π)">π</button>
+              <button class="btn btn-op" data-action="op" data-val="-" title="Subtração">−</button>
+
+              <!-- LINHA 6: 1, 2, 3, Adição -->
+              <button class="btn btn-num" data-action="num" data-val="1">1</button>
+              <button class="btn btn-num" data-action="num" data-val="2">2</button>
+              <button class="btn btn-num" data-action="num" data-val="3">3</button>
+              <button class="btn btn-sci" data-action="euler" title="Constante Euler (e)">e</button>
+              <button class="btn btn-op" data-action="op" data-val="+" title="Adição">+</button>
+
+              <!-- LINHA 7: 0, Ponto Decimal, Igual -->
+              <button class="btn btn-num btn-zero" data-action="num" data-val="0">0</button>
+              <button class="btn btn-num" data-action="decimal" data-val=".">,</button>
+              <button class="btn btn-equals" data-action="equals" title="Calcular resultado (Enter)">=</button>
+            </div>
+          </div>
+
+          <!-- GAVETA DE HISTÓRICO LATERAL RETRÁTIL -->
+          <aside id="history-drawer" class="history-drawer" aria-label="Histórico de Cálculos">
+            <div class="drawer-header">
+              <h3>📜 Histórico de Cálculos</h3>
+              <div class="drawer-actions">
+                <button id="btn-clear-history" class="btn-link" title="Limpar histórico">Limpar</button>
+                <button id="btn-close-history" class="btn-icon" title="Fechar histórico">✕</button>
+              </div>
+            </div>
+            <div id="history-list" class="history-list">
+              <div class="history-empty">Nenhum cálculo recente.</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           ABA 2: RESOLUÇÃO DE EQUAÇÕES (1º E 2º GRAU)
+      =================================================================== -->
+      <section id="tab-equacoes" class="tab-panel" role="tabpanel">
+        <div class="panel-header">
+          <h2>Resolução Didática de Equações</h2>
+          <p>Encontre as raízes de equações de 1º e 2º grau com explicação passo a passo.</p>
+        </div>
+
+        <div class="cards-grid">
+          
+          <!-- CARD: EQUAÇÃO DE 1º GRAU -->
+          <div class="content-card">
+            <div class="card-badge">1º Grau</div>
+            <h3>Equação Linear: <span class="formula-highlight">ax + b = 0</span></h3>
+            <p class="card-desc">Informe os coeficientes para isolar a incógnita <em>x</em>.</p>
+
+            <form id="form-eq1" class="form-grid">
+              <div class="input-group">
+                <label for="eq1-a">Coeficiente <strong>a</strong> (x):</label>
+                <input type="number" step="any" id="eq1-a" required placeholder="Ex: 2">
+              </div>
+              <div class="input-group">
+                <label for="eq1-b">Coeficiente <strong>b</strong> (termo independente):</label>
+                <input type="number" step="any" id="eq1-b" required placeholder="Ex: -8">
+              </div>
+              <button type="submit" class="btn-primary">Resolver Equação</button>
+            </form>
+
+            <div id="eq1-result" class="result-box" style="display: none;">
+              <div class="result-header">Resultado:</div>
+              <div id="eq1-solution" class="result-value"></div>
+              <pre id="eq1-steps" class="step-by-step"></pre>
+            </div>
+          </div>
+
+          <!-- CARD: EQUAÇÃO DE 2º GRAU -->
+          <div class="content-card">
+            <div class="card-badge">2º Grau</div>
+            <h3>Equação Quadrática: <span class="formula-highlight">ax² + bx + c = 0</span></h3>
+            <p class="card-desc">Cálculo de raízes reais através da fórmula de Bhaskara.</p>
+
+            <form id="form-eq2" class="form-grid">
+              <div class="input-row-3">
+                <div class="input-group">
+                  <label for="eq2-a">Coeficiente <strong>a</strong> (x²):</label>
+                  <input type="number" step="any" id="eq2-a" required placeholder="Ex: 1">
+                </div>
+                <div class="input-group">
+                  <label for="eq2-b">Coeficiente <strong>b</strong> (x):</label>
+                  <input type="number" step="any" id="eq2-b" required placeholder="Ex: -5">
+                </div>
+                <div class="input-group">
+                  <label for="eq2-c">Coeficiente <strong>c</strong>:</label>
+                  <input type="number" step="any" id="eq2-c" required placeholder="Ex: 6">
+                </div>
+              </div>
+              <button type="submit" class="btn-primary">Calcular Raízes (Bhaskara)</button>
+            </form>
+
+            <div id="eq2-result" class="result-box" style="display: none;">
+              <div class="result-header">Resultado:</div>
+              <div id="eq2-solution" class="result-value"></div>
+              <pre id="eq2-steps" class="step-by-step"></pre>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           ABA 3: ESTATÍSTICA
+      =================================================================== -->
+      <section id="tab-estatistica" class="tab-panel" role="tabpanel">
+        <div class="panel-header">
+          <h2>Análise Estatística</h2>
+          <p>Calcule instantaneamente a média, mediana, maior e menor valor de uma lista numérica.</p>
+        </div>
+
+        <div class="content-card full-width">
+          <form id="form-estatistica" class="form-vertical">
+            <div class="input-group">
+              <label for="stat-input">Digite os números (separados por vírgula ou espaço):</label>
+              <textarea id="stat-input" rows="3" placeholder="Exemplo: 12, 45, 67.5, 89, 23, 100, 3.14" required></textarea>
+            </div>
+            <div class="btn-row">
+              <button type="submit" class="btn-primary">Analisar Dados</button>
+              <button type="button" id="btn-stat-sample" class="btn-secondary">Carregar Exemplo</button>
+              <button type="button" id="btn-stat-clear" class="btn-ghost">Limpar</button>
+            </div>
+          </form>
+
+          <div id="stat-results-container" class="stat-grid" style="display: none;">
+            <div class="stat-card">
+              <span class="stat-label">Média Aritmética</span>
+              <span id="stat-media" class="stat-val">-</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Mediana</span>
+              <span id="stat-mediana" class="stat-val">-</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Maior Valor (Máx)</span>
+              <span id="stat-maior" class="stat-val">-</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Menor Valor (Mín)</span>
+              <span id="stat-menor" class="stat-val">-</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Total de Elementos</span>
+              <span id="stat-qtd" class="stat-val">-</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           ABA 4: CONVERSÕES DE UNIDADES
+      =================================================================== -->
+      <section id="tab-conversoes" class="tab-panel" role="tabpanel">
+        <div class="panel-header">
+          <h2>Conversões de Unidades</h2>
+          <p>Converta facilmente temperaturas, distâncias e unidades de tempo.</p>
+        </div>
+
+        <div class="cards-grid">
+          
+          <!-- TEMPERATURA -->
+          <div class="content-card">
+            <div class="card-icon">🌡️</div>
+            <h3>Temperatura</h3>
+            <p class="card-desc">Celsius (°C) ⇄ Fahrenheit (°F)</p>
+
+            <div class="converter-box">
+              <div class="conv-field">
+                <label>Celsius (°C)</label>
+                <input type="number" step="any" id="conv-celsius" placeholder="0">
+              </div>
+              <div class="conv-arrow">⇄</div>
+              <div class="conv-field">
+                <label>Fahrenheit (°F)</label>
+                <input type="number" step="any" id="conv-fahrenheit" placeholder="32">
+              </div>
+            </div>
+          </div>
+
+          <!-- DISTÂNCIA -->
+          <div class="content-card">
+            <div class="card-icon">📏</div>
+            <h3>Distância</h3>
+            <p class="card-desc">Quilômetros (km) ⇄ Metros (m)</p>
+
+            <div class="converter-box">
+              <div class="conv-field">
+                <label>Quilômetros (km)</label>
+                <input type="number" step="any" id="conv-km" placeholder="1">
+              </div>
+              <div class="conv-arrow">⇄</div>
+              <div class="conv-field">
+                <label>Metros (m)</label>
+                <input type="number" step="any" id="conv-m" placeholder="1000">
+              </div>
+            </div>
+          </div>
+
+          <!-- TEMPO -->
+          <div class="content-card">
+            <div class="card-icon">⏱️</div>
+            <h3>Tempo</h3>
+            <p class="card-desc">Horas (h) ⇄ Minutos (min)</p>
+
+            <div class="converter-box">
+              <div class="conv-field">
+                <label>Horas (h)</label>
+                <input type="number" step="any" id="conv-horas" placeholder="1">
+              </div>
+              <div class="conv-arrow">⇄</div>
+              <div class="conv-field">
+                <label>Minutos (min)</label>
+                <input type="number" step="any" id="conv-minutos" placeholder="60">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           ABA 5: PORCENTAGEM
+      =================================================================== -->
+      <section id="tab-porcentagem" class="tab-panel" role="tabpanel">
+        <div class="panel-header">
+          <h2>Cálculos de Porcentagem</h2>
+          <p>Operações percentuais rápidas para finanças, comércio e cálculos do dia a dia.</p>
+        </div>
+
+        <div class="cards-grid">
+          
+          <!-- 1. X% DE Y -->
+          <div class="content-card">
+            <h3>Quanto é X% de Y?</h3>
+            <p class="card-desc">Calcula a fração percentual de um valor.</p>
+            <form id="form-pct-valor" class="form-grid">
+              <div class="input-group">
+                <label>Porcentagem (%):</label>
+                <input type="number" step="any" id="pct-p" placeholder="Ex: 20" required>
+              </div>
+              <div class="input-group">
+                <label>Do valor base:</label>
+                <input type="number" step="any" id="pct-val" placeholder="Ex: 150" required>
+              </div>
+              <button type="submit" class="btn-primary">Calcular</button>
+            </form>
+            <div id="res-pct-valor" class="result-box inline" style="display: none;">
+              <span class="result-label">Resultado:</span>
+              <span class="result-value" id="val-pct-valor"></span>
+            </div>
+          </div>
+
+          <!-- 2. AUMENTO PERCENTUAL -->
+          <div class="content-card">
+            <h3>Aumento Percentual (+%)</h3>
+            <p class="card-desc">Aplica acréscimo percentual a um valor.</p>
+            <form id="form-pct-aumento" class="form-grid">
+              <div class="input-group">
+                <label>Valor original:</label>
+                <input type="number" step="any" id="aum-val" placeholder="Ex: 100" required>
+              </div>
+              <div class="input-group">
+                <label>Aumento (%):</label>
+                <input type="number" step="any" id="aum-p" placeholder="Ex: 15" required>
+              </div>
+              <button type="submit" class="btn-primary">Calcular Aumento</button>
+            </form>
+            <div id="res-pct-aumento" class="result-box inline" style="display: none;">
+              <span class="result-label">Valor com Aumento:</span>
+              <span class="result-value" id="val-pct-aumento"></span>
+            </div>
+          </div>
+
+          <!-- 3. DESCONTO PERCENTUAL -->
+          <div class="content-card">
+            <h3>Desconto Percentual (−%)</h3>
+            <p class="card-desc">Aplica abatimento percentual a um valor.</p>
+            <form id="form-pct-desconto" class="form-grid">
+              <div class="input-group">
+                <label>Valor original:</label>
+                <input type="number" step="any" id="desc-val" placeholder="Ex: 100" required>
+              </div>
+              <div class="input-group">
+                <label>Desconto (%):</label>
+                <input type="number" step="any" id="desc-p" placeholder="Ex: 15" required>
+              </div>
+              <button type="submit" class="btn-primary">Calcular Desconto</button>
+            </form>
+            <div id="res-pct-desconto" class="result-box inline" style="display: none;">
+              <span class="result-label">Valor com Desconto:</span>
+              <span class="result-value" id="val-pct-desconto"></span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <div class="brand-badge mini">C</div>
+        <span><strong>Calcify</strong> — Make numbers simple.</span>
+      </div>
+      <div class="footer-center">
+        <span>Flask & Python 3 • Sem dependências pesadas</span>
+      </div>
+      <div class="footer-right">
+        <span class="status-indicator"></span> Servidor Conectado
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
