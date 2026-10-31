@@ -2,29 +2,29 @@
 
 **Make numbers simple.**
 
-O Calcify é uma calculadora científica desenvolvida em Python que evoluiu de uma aplicação executada no terminal para uma aplicação web interativa, reunindo operações matemáticas, ferramentas científicas e recursos de estatística em uma única interface.
+O Calcify é uma calculadora científica desenvolvida em Python que evoluiu de uma aplicação executada no terminal para uma aplicação web interativa. Reúne operações matemáticas, funções científicas, resolução de equações, estatística e conversões em uma única interface.
+
+## 🌐 Acesse o projeto
+
+**[Acessar o Calcify](https://calcify-calculadora-cient-fica-em-pythonv.onrender.com)**
+
+Disponível online, diretamente pelo navegador, sem necessidade de instalação.
 
 ## 📸 Demonstração
 
-![Tela do Calcify](./calcifyCft.png)
+![Tela principal do Calcify](./calcifyCft.png)
+
+*Interface da calculadora científica.*
 
 ## 💡 Sobre o projeto
 
-O projeto começou como uma calculadora em Python, com o objetivo de praticar lógica de programação, funções e organização de código.
+O projeto começou como uma calculadora desenvolvida em Python, com o objetivo de praticar lógica de programação, funções e organização de código.
 
 Durante o **Desafio 2 da Imersão Engenharia de Software: Dev na Era da IA**, promovida pela Alura em parceria com o Google, utilizei o Google Antigravity para explorar novas possibilidades de desenvolvimento com inteligência artificial.
 
-A partir dessa experiência, decidi evoluir o projeto original, mantendo sua lógica matemática e construindo uma aplicação web completa.
+A partir dessa experiência, decidi evoluir o projeto original, mantendo sua lógica matemática e transformando-o em uma aplicação web completa.
 
-O resultado foi o Calcify: uma aplicação que integra Python, Flask, HTML, CSS e JavaScript, com testes automatizados para validar seu funcionamento.
-
-## ☁️ Publicação
-
-O Calcify está disponível na web e pode ser acessado diretamente pelo navegador.
-
-🔗 **Aplicação online:** https://calcify-calculadora-cient-fica-em-pythonv.onrender.com
-
-O deploy foi realizado na plataforma Render, utilizando Gunicorn para executar a aplicação Flask em produção.
+O resultado foi o Calcify, uma aplicação que integra Python, Flask, HTML, CSS e JavaScript, contando também com testes automatizados para validar seu funcionamento.
 
 ## ✨ Funcionalidades
 
@@ -33,7 +33,7 @@ O deploy foi realizado na plataforma Render, utilizando Gunicorn para executar a
 - **Potenciação e radiciação:** potências, raízes quadradas e raízes de qualquer índice.
 - **Funções científicas:** seno, cosseno, tangente, logaritmos e fatorial.
 - **Equações:** resolução de equações de primeiro e segundo grau.
-- **Estatística:** média, mediana, maior e menor valor.
+- **Estatística:** cálculo de média, mediana, maior e menor valor.
 - **Conversões:** temperatura, distância e tempo.
 
 ### 🖥️ Recursos da interface
@@ -115,7 +115,7 @@ http://localhost:5000
 
 ### Calculadora pelo terminal
 
-O projeto também mantém sua versão original executada pelo terminal:
+O projeto também mantém sua versão original, executada diretamente pelo terminal:
 
 ```bash
 python calculadora.py
@@ -125,10 +125,10 @@ python calculadora.py
 
 O projeto possui **44 testes automatizados**, divididos em:
 
-- 32 testes unitários para as operações matemáticas.
-- 12 testes de integração para a aplicação web e suas rotas.
+- 32 testes unitários para validar as operações matemáticas.
+- 12 testes de integração para verificar a aplicação web e suas rotas.
 
-Para executar:
+Para executar os testes:
 
 ```bash
 python -m unittest -v test_calculadora.py test_app.py
@@ -136,6 +136,11 @@ python -m unittest -v test_calculadora.py test_app.py
 
 **Última execução registrada:** 44 testes executados e aprovados, sem falhas.
 
+## ☁️ Publicação
+
+A aplicação está hospedada na plataforma **Render**, utilizando Gunicorn como servidor de produção para executar o projeto Flask.
+
+🔗 **Aplicação online:** [Calcify — Calculadora Científica](https://calcify-calculadora-cient-fica-em-pythonv.onrender.com)
 
 ## 🎯 Aprendizados e desenvolvimento
 
@@ -147,7 +152,7 @@ Durante sua evolução, pude trabalhar com:
 - Integração entre frontend e backend.
 - Criação e utilização de APIs.
 - Desenvolvimento de interfaces web.
-- Testes automatizados.
+- Implementação de testes automatizados.
 - Utilização de inteligência artificial como apoio ao desenvolvimento.
 
 A inteligência artificial foi utilizada como ferramenta de apoio, enquanto as decisões, melhorias e validações fizeram parte do processo de aprendizado e evolução do projeto.
@@ -157,7 +162,5 @@ A inteligência artificial foi utilizada como ferramenta de apoio, enquanto as d
 **Desenvolvido com Python, curiosidade e vontade de aprender.** ⭐
 
 A experiência contribuiu para desenvolver minha capacidade de compreender códigos, identificar melhorias e validar soluções.
-
----
 
 *Projeto desenvolvido para fins de aprendizado e prática de programação.*
